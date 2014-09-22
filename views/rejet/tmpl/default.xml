@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Liste des comptes rejetés" option="View">
+        <message>
+                        <![CDATA[Liste des comptes rejetés]]>
+        </message>
+	</layout>
+</metadata>
