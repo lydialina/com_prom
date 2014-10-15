@@ -136,4 +136,22 @@ class PromoModelPromoteur extends JModelList {
     return $results;
   }
 
+/*
+|------------------------------------------------------------------------------------
+| Get getPaiment
+|------------------------------------------------------------------------------------
+*/
+  public function getPaiment($code){
+    $db = JFactory::getDBO();
+    $query = $db->getQuery(true);    
+    $query
+        ->select('*')
+        ->from($db->quoteName('paiements'))
+        ->where($db->quoteName('CODE_OPGI') . ' = '. $code);
+    
+    $db->setQuery($query,0, 50);
+    $results = $db->loadObjectList();
+    return $results;
+  }
+
 }

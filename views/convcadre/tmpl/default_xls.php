@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 $marches = $this->data;
 //var_dump($marches);
 
-$file="marche-cnl.xls";
+$file="convcadre-cnl.xls";
 header("Content-type: application/vnd.ms-excel");
 header("Content-Disposition: attachment; filename=$file");
 
