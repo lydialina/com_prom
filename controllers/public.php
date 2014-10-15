@@ -27,19 +27,67 @@ class PromoControllerPublic extends PromoController
 		  // Extraction of Variable
       $app            = JFactory::getApplication();
       $jinput         = $app->input;
-      $raison_sociale = $jinput->get('raison_sociale', '', 'STRING');
+      
+      // Personnel
+      $nom            = $jinput->get('nom', '', 'STRING');
+      $prenom         = $jinput->get('prenom', '', 'STRING');
+      $fonction       = $jinput->get('fonction', '', 'STRING');
       $username       = $jinput->get('username', '', 'USERNAME');
-      $codepromo      = $jinput->get('codepromo', '', 'INT');
-      $num_rc         = $jinput->get('num_rc', '', 'STRING');
       $password       = $jinput->get('password1', '', 'STRING');
       $password2      = $jinput->get('password2', '', 'STRING');
       $email1         = $jinput->get('email1', '', 'STRING');
       $email2         = $jinput->get('email2', '', 'STRING');
+      
+      // Espace promoteur
+      $codepromo      = $jinput->get('codepromo', '', 'STRING');
+      $raison_sociale = $jinput->get('raison_sociale', '', 'STRING');
+      $adresse        = $jinput->get('adresse', '', 'STRING');
+      $wilaya         = $jinput->get('wilaya', '', 'STRING');
+      $num_rc         = $jinput->get('num_rc', '', 'STRING');
+      $rib            = $jinput->get('rib', '', 'STRING');
 
-      $ID = JFactory::getUser()->id; // Get the ID of the current logged user
 
       // Checking RC + Code promoteur + Same email + same Password
 
+      // code promo , mail, pass
+      $error = '';
+      // if (!$this->getModel('Promoteur')->verif_prom_cod($codepromo)) {
+      //   $error .= 'Votre code n\'existe pas !';
+      // }
+
+      if ( $email1!=$email2 ) {
+        $error .= 'Votre adresse mail de confirmation ne correspond pas !';
+      }
+
+      if ( $password!=$password2 ) {
+        $error .= 'Votre mot de passe de confirmation ne correspond pas !';
+      }
+      // RC
+
+      /*if (!$this->getModel('Promoteur')->verif_RC($num_rc) ) {
+        $error .='Votre Numéro de Registre est incorrect !';
+      }*/
+
+      $modelPromo = $this->getModel('Promoteur');
+
+      $array_checking = array();
+      if ($codepromo != '' && $wilaya!='') {
+        $where = 'code_opgi = ' . $codepromo;
+        $result = $modelPromo->verif_prom_info($where);
+
+        if (!is_null($result)) {
+          $CODE_OPGI = $result->code_opgi;
+        }else{
+          $error .= 'Le code promoteur n\'existe pas dans notre base, veuillez contacter votre agence pour récuperer votre code' ;
+        }
+
+      }else{
+        $error .= 'Merci d\'insérer le code promoteur + la wilaya';
+      }
+
+      if ($error != '') {
+        $app->redirect('index.php?option=com_promo&view=registers', $error, 'error'); // redirection
+      }
 
       // Creation of user Object
       require_once JPATH_COMPONENT.'/helpers/' .'promo.php';
@@ -47,7 +95,7 @@ class PromoControllerPublic extends PromoController
 
       // Insert in the promo table
       $obj = new stdClass();
-      $obj->code_promo = $codepromo;
+      $obj->CODE_OPGI = $CODE_OPGI;
 
       // Check if 
       if (is_numeric($userID) && $userID != 0) {
@@ -75,6 +123,7 @@ class PromoControllerPublic extends PromoController
       PromoFrontendHelper::autologin($username, $password);
 
       // Redirection to the Dash
+      $app->redirect('index.php?option=com_users&view=profile&layout=edit&Itemid=218', 'Bienvenue sur l\'espace promoteur', 'success');
   }
 
 }

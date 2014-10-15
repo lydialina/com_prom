@@ -37,7 +37,7 @@ $promoteurs = $this->data;
     <tr>
       <td><?php echo $promoteur->raison_sociale ?></td>
       <td><?php echo $promoteur->username ?></td>
-      <td><?php echo $promoteur->code_promo ?></td>
+      <td><?php echo $promoteur->CODE_OPGI ?></td>
       <td><?php echo $promoteur->num_rc ?></td>
       <td><?php echo $promoteur->password1 ?></td>
       <td><?php echo $promoteur->password2 ?></td>

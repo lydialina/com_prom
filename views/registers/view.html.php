@@ -21,16 +21,11 @@ class PromoViewRegisters extends JViewLegacy {
      * Display the view
      */
     public function display($tpl = null) {
-      
-      // S'il est connecter recuperer les info du promoteur
-      $id = JFactory::getUser()->id;
-      $this->promoteur = '';
-      if ($id>0) { // Logged Already
-        // Get her information
-        $model = JModelLegacy::getInstance('PromoUser', 'PromoModel');
-        $this->promoteur = $model->getPromo($id);
-      }
 
+      $ID = JFactory::getUser()->id;
+      if ($ID) {
+        JFactory::getApplication()->redirect('index.php?option=com_users&view=profile&layout=edit&Itemid=218', 'Bienvenue sur l\'espace promoteur', 'info');
+      }
       parent::display($tpl);
     }
 }
