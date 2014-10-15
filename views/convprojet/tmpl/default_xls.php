@@ -25,24 +25,26 @@ ob_start();
   <thead>
     <tr>
       <th>#</th>
-      <th>CODE_PROD</th>
-      <th>CODE_OPGI</th>
-      <th>NUM_TR</th>
-      <th>ANNEE</th>
-      <th>LIB_CONV</th>
-      <th>NB_LOG</th>
+      <th>Code OPGI</th>
+      <th>code_prod</th>
+      <th>CODE_OP</th>
+      <th>REF_MARCH</th>
+      <th>LIB_MARCH</th>
+      <th>MONTANT_mar</th>
+      <th>type_march</th>
     </tr>
   </thead>
 
-  <?php foreach ($convcadres as $key => $convcadre): ?>
+  <?php foreach ($marches as $key => $marche): ?>
     <tr>
       <td><?php echo $key+1 ?></td>
-      <td><?php echo $convcadre->CODE_PROD ?></td>
-      <td><?php echo $convcadre->CODE_OPGI ?></td>
-      <td><?php echo $convcadre->NUM_TR ?></td>
-      <td><?php echo $convcadre->ANNEE ?></td>
-      <td><?php echo $convcadre->LIB_CONV ?></td>
-      <td><?php echo $convcadre->NB_LOG ?></td>
+      <td><?php echo $marche->code_opgi ?></td>
+      <td><?php echo $marche->code_prod ?></td>
+      <td><?php echo $marche->CODE_OP ?></td>
+      <td><?php echo $marche->REF_MARCH ?></td>
+      <td><?php echo $marche->LIB_MARCH ?></td>
+      <td><?php echo $marche->MONTANT_mar ?></td>
+      <td><?php echo $marche->type_march ?></td>
     </tr>
   <?php endforeach ?>
 
