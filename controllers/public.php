@@ -116,7 +116,7 @@ class PromoControllerPublic extends PromoController
         
         $this->getModel('PromoRejeter')->setPromoRejeter($obj);
         
-        //$app->redirect('index.php?option=com_promo&view=registers', $userID, 'error');
+        $app->redirect('index.php?option=com_promo&view=registers&Itemid=160', $userID, 'error');
       }
 
       // Auto login
