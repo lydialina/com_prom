@@ -12,6 +12,13 @@ defined('_JEXEC') or die;
 $paiments = $this->data;
 //var_dump($paiments);
 
+$document = JFactory::getDocument();
+$document->addStyleSheet(JURI::base() . 'components/com_promo/assets/css/jquery.dataTables.css');
+
+$document->addScript(JURI::base() . 'components/com_promo/assets/js/jquery.min.js');
+$document->addScript(JURI::base() . 'components/com_promo/assets/js/jquery.dataTables.min.js');
+$document->addScript(JURI::base() . 'components/com_promo/assets/js/table_sort.js');
+
 ?>
 <h1 class="title">Liste des situations paiment</h1>
 
@@ -24,7 +31,7 @@ overflow-x: auto;
 -ms-overflow-style: -ms-autohiding-scrollbar;
 border: 1px solid #dddddd;
 -webkit-overflow-scrolling: touch;">
-  <table class="table table-bordered">
+  <table class="table table-bordered" id="myTable">
     <thead>
       <tr>
         <th>#</th>

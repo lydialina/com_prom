@@ -95,7 +95,7 @@ class PromoModelPromoteur extends JModelList {
         ->from($db->quoteName('marches'))
         ->where($db->quoteName('code_opgi') . ' = '. $code);
     
-    $db->setQuery($query,0, 50);
+    $db->setQuery($query);
     $results = $db->loadObjectList();
     return $results;
   }
@@ -113,7 +113,7 @@ class PromoModelPromoteur extends JModelList {
         ->from($db->quoteName('convcadre'))
         ->where($db->quoteName('CODE_OPGI') . ' = '. $code);
     
-    $db->setQuery($query,0, 50);
+    $db->setQuery($query);
     $results = $db->loadObjectList();
     return $results;
   }
@@ -131,7 +131,7 @@ class PromoModelPromoteur extends JModelList {
         ->from($db->quoteName('convprojet'))
         ->where($db->quoteName('CODE_OPGI') . ' = '. $code);
     
-    $db->setQuery($query,0, 50);
+    $db->setQuery($query);
     $results = $db->loadObjectList();
     return $results;
   }
@@ -149,7 +149,7 @@ class PromoModelPromoteur extends JModelList {
         ->from($db->quoteName('paiements'))
         ->where($db->quoteName('CODE_OPGI') . ' = '. $code);
     
-    $db->setQuery($query,0, 50);
+    $db->setQuery($query);
     $results = $db->loadObjectList();
     return $results;
   }

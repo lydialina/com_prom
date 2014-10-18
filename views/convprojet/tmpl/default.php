@@ -11,13 +11,19 @@ defined('_JEXEC') or die;
 
 $convprojets = $this->data;
 //var_dump($convprojets);
+$document = JFactory::getDocument();
+$document->addStyleSheet(JURI::base() . 'components/com_promo/assets/css/jquery.dataTables.css');
+
+$document->addScript(JURI::base() . 'components/com_promo/assets/js/jquery.min.js');
+$document->addScript(JURI::base() . 'components/com_promo/assets/js/jquery.dataTables.min.js');
+$document->addScript(JURI::base() . 'components/com_promo/assets/js/table_sort.js');
 
 ?>
 <h1 class="title">Liste des situations des CONVPROJET</h1>
 
 <a href="index.php?option=com_promo&view=convprojet&form=xls" class="btn btn-success">Export XLS</a>
 
-<table class="table table-bordered mt30">
+<table class="table table-bordered mt30" id="myTable">
   <thead>
     <tr>
       <th>#</th>
